@@ -48,22 +48,23 @@ add_action('get_header', 'aesp_custom_admin_bar');
 
 function aesp_custom_admin_bar()
 {
-    $current_user = wp_get_current_user();
-    $roles = (array) $current_user->roles;
+    // $current_user = wp_get_current_user();
+    // $roles = (array) $current_user->roles;
 
-    if (isset($roles[0]) && ($roles[0] !== 'administrator' && $roles[0] !== 'editor')) { ?>
+    // if (isset($roles[0]) && ($roles[0] !== 'administrator' && $roles[0] !== 'editor')) {
+?>
     <?php
-        $redirect = null;
-        $aesp_login_page = aesp_get_option('aesp_login_page');
-        if($aesp_login_page) {
-            $redirect = get_page_link($aesp_login_page);
-        }
-        //get_page_link($aesp_login_page)
+    $redirect = null;
+    $aesp_login_page = aesp_get_option('aesp_login_page');
+    if ($aesp_login_page) {
+        $redirect = get_page_link($aesp_login_page);
+    }
+    //get_page_link($aesp_login_page)
     ?>
-        <div class="aesp-custom-admin-bar">
-            <div class="aesp-custom-admin-bar-message"><?php echo sprintf(__('Bem vindo, %s', 'aesp'), '<strong>' . $current_user->data->display_name . '</strong>'); ?> (<a href="<?php echo wp_logout_url($redirect); ?>" target="_self" class=""><?php _e('sair', 'aesp'); ?></a>)!</div>
-        </div>
-        <!-- /.aesp-custom-admin-bar -->
+    <div class="aesp-custom-admin-bar">
+        <div class="aesp-custom-admin-bar-message"><?php echo sprintf(__('Bem vindo, %s', 'aesp'), '<strong>' . $current_user->data->display_name . '</strong>'); ?> (<a href="<?php echo wp_logout_url($redirect); ?>" target="_self" class=""><?php _e('sair', 'aesp'); ?></a>)!</div>
+    </div>
+    <!-- /.aesp-custom-admin-bar -->
 
-<?php }
+<?php // }
 }
