@@ -48,7 +48,7 @@ add_action('get_header', 'aesp_custom_admin_bar');
 
 function aesp_custom_admin_bar()
 {
-    // $current_user = wp_get_current_user();
+    $current_user = wp_get_current_user();
     // $roles = (array) $current_user->roles;
 
     // if (isset($roles[0]) && ($roles[0] !== 'administrator' && $roles[0] !== 'editor')) {
