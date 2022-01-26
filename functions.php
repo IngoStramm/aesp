@@ -70,3 +70,12 @@ function aesp_custom_admin_bar()
 
 <?php // }
 }
+
+
+add_action('elementor/query/{$assoc_parc_query}', 'aesp_assoc_parc_query_callback');
+
+function aesp_assoc_parc_query_callback($query)
+{
+    $query->set('order', 'DESC');
+    $query->set('orderby', 'title');
+}
