@@ -31,6 +31,7 @@ function documento_video_cpt()
         array(
             'has_archive' => true,
             'supports' => array('title'),
+            'menu_icon' => 'dashicons-media-document'
         )
     );
 }
