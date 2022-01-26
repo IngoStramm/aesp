@@ -52,9 +52,9 @@ function aesp_custom_admin_bar()
         return;
 
     $current_user = wp_get_current_user();
-    // $roles = (array) $current_user->roles;
-
-    // if (isset($roles[0]) && ($roles[0] !== 'administrator' && $roles[0] !== 'editor')) {
+    $roles = (array) $current_user->roles;
+    $show_admin_url = isset($roles[0]) && ($roles[0] === 'administrator');
+    // aesp_debug($show_admin_url);
 ?>
     <?php
     $redirect = null;
@@ -64,18 +64,23 @@ function aesp_custom_admin_bar()
     }
     ?>
     <div class="aesp-custom-admin-bar">
-        <div class="aesp-custom-admin-bar-message"><?php echo sprintf(__('Bem vindo, %s', 'aesp'), '<strong>' . $current_user->data->display_name . '</strong>'); ?> (<a href="<?php echo wp_logout_url($redirect); ?>" target="_self" class=""><?php _e('sair', 'aesp'); ?></a>)!</div>
+        <div class="aesp-custom-admin-bar-message">
+            <?php echo sprintf(__('Bem vindo, %s', 'aesp'), '<strong>' . $current_user->data->display_name . '</strong>'); ?> (<a href="<?php echo wp_logout_url($redirect); ?>" target="_self" class=""><?php _e('sair', 'aesp'); ?></a>)!
+            <?php if ($show_admin_url) { ?>
+                <a class="aesp-btn" href="<?php echo get_admin_url(); ?>" target="_blank"><?php _e('Acessar admin', 'aesp'); ?></a>
+            <?php } ?>
+        </div>
     </div>
     <!-- /.aesp-custom-admin-bar -->
 
-<?php // }
+<?php
 }
 
 
-add_action('elementor/query/{$assoc_parc_query}', 'aesp_assoc_parc_query_callback');
+add_action('elementor/query/assoc_parc_query', 'aesp_assoc_parc_query_callback');
 
 function aesp_assoc_parc_query_callback($query)
 {
-    $query->set('order', 'DESC');
+    $query->set('order', 'ASC');
     $query->set('orderby', 'title');
 }

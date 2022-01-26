@@ -4,7 +4,7 @@
  * Plugin Name: AESP
  * Plugin URI: https://agencialaf.com
  * Description: Descrição do AESP.
- * Version: 0.0.6
+ * Version: 0.0.7
  * Author: Ingo Stramm
  * Text Domain: aesp
  * License: GPLv2
