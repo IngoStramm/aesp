@@ -16,5 +16,5 @@ function aesp_frontend_scripts()
     wp_enqueue_script('aesp-script');
 
     wp_localize_script('aesp-script', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
-    wp_enqueue_style('aesp-style', AESP_URL . 'assets/css/aesp.css', array(), false, 'all');
+    wp_enqueue_style('aesp-style', AESP_URL . 'assets/css/aesp.css', array(), filemtime(AESP_DIR . '/assets/css/aesp.css'), 'all');
 }

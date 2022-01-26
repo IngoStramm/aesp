@@ -84,3 +84,22 @@ function aesp_assoc_parc_query_callback($query)
     $query->set('order', 'ASC');
     $query->set('orderby', 'title');
 }
+
+add_shortcode('aesp_search', 'aesp_search_form');
+
+function aesp_search_form($atts)
+{
+    $a = shortcode_atts(array(
+        'post_type' => 'associados',
+    ), $atts);
+    return '<form class="elementor-search-form" role="search" action="' . site_url('/') . '" method="get">
+                <div class="elementor-search-form__container">
+                    <input placeholder="' . __('Pesquisar', 'aesp') . '" class="elementor-search-form__input" type="search" name="s" value="">
+                    <input type="hidden" name="post_type" value="' . $a['post_type'] .  '" />
+                    <button class="elementor-search-form__submit" type="submit" title="' . __('Pesquisar', 'aesp') . '" aria-label="' . __('Pesquisar', 'aesp') . '" style="min-width: 50px;">
+                    <i aria-hidden="true" class="fas fa-search"></i>
+                    <span class="elementor-screen-only">' . __('Pesquisar', 'aesp') . '</span>
+					</button>
+				</div>
+		    </form>';
+}
