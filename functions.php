@@ -4,14 +4,14 @@
 add_action('get_header', 'aesp_area_restrita_managment');
 
 function aesp_area_restrita_managment()
-{
-    if (!is_archive('documento') && !is_tax('categoria-documento'))
-        return;
-
+{  
+    if (!is_post_type_archive('documento'))
+    return;
+    
     if (is_user_logged_in())
-        return;
+    return;
     $aesp_login_page = aesp_get_option('aesp_login_page');
-
+    
     if (!$aesp_login_page) {
         wp_safe_redirect(get_site_url());
         exit;
@@ -19,7 +19,7 @@ function aesp_area_restrita_managment()
         // aesp_debug($aesp_login_page);
         $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? 'https://' : 'http://';
         $curr_url = urlencode($protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-
+        
         // return aesp_debug(esc_url($curr_url));
         wp_safe_redirect(esc_url(get_page_link($aesp_login_page) . '?redirect=' . $curr_url));
         exit;
