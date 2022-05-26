@@ -30,7 +30,7 @@ function aesp_associados_parceiros_cmb()
     $cmb = new_cmb2_box(array(
         'id'            => 'aesp_associados_metabox',
         'title'         => esc_html__('Opções', 'aesp'),
-        'object_types'  => array('associados', 'parceiros'), // Post type
+        'object_types'  => array('associados', 'parcerias'), // Post type
     ));
 
     $cmb->add_field(array(

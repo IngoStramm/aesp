@@ -6,7 +6,7 @@ function parceiros_video_cpt()
 {
     $parceiros = new Aesp_Post_Type(
         __('Parceiro', 'aesp'), // Nome (Singular) do Post Type.
-        'parceiros' // Slug do Post Type.
+        'parcerias' // Slug do Post Type.
     );
 
     $parceiros->set_labels(
