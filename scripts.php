@@ -11,7 +11,9 @@ function aesp_frontend_scripts()
         wp_enqueue_script('aesp-livereload', 'http://localhost:35729/livereload.js?snipver=1', array(), null, true);
     endif;
 
-    wp_register_script('aesp-script', AESP_URL . 'assets/js/aesp' . $min . '.js', array('jquery'), '1.0.0', true);
+    wp_enqueue_script('imask-script', AESP_URL . 'assets/js/imask' . $min . '.js', array(), '1.0.0', true);
+
+    wp_register_script('aesp-script', AESP_URL . 'assets/js/aesp' . $min . '.js', array('jquery', 'imask-script'), '1.0.0', true);
 
     wp_enqueue_script('aesp-script');
 

@@ -4,7 +4,7 @@
 	"eqeqeq": true,
 	"eqnull": true,
     "es3": false,
-    "esversion": 6,
+    "esversion": 8,
 	"expr": true,
 	"immed": true,
 	"noarg": true,

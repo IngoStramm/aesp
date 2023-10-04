@@ -4,7 +4,7 @@
  * Plugin Name: AESP
  * Plugin URI: https://agencialaf.com
  * Description: Descrição do AESP.
- * Version: 0.0.10
+ * Version: 0.0.11
  * Author: Ingo Stramm
  * Text Domain: aesp
  * License: GPLv2
@@ -29,9 +29,11 @@ require_once 'post-type/post-type.php';
 require_once 'taxonomy/taxonomy.php';
 require_once 'cmb.php';
 require_once 'settings.php';
+require_once 'post-type.php';
+require_once 'shortcode.php';
 require_once 'functions.php';
 
-require 'plugin-update-checker-4.10/plugin-update-checker.php';
+require_once 'plugin-update-checker-4.10/plugin-update-checker.php';
 $updateChecker = Puc_v4_Factory::buildUpdateChecker(
     'https://raw.githubusercontent.com/IngoStramm/aesp/master/info.json',
     __FILE__,

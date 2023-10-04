@@ -4,6 +4,7 @@ module.exports = function (grunt) {
 
     const sass = require('node-sass');
     require('load-grunt-tasks')(grunt);
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     var odinConfig = {
 
@@ -121,6 +122,18 @@ module.exports = function (grunt) {
                 ],
                 dest: '../dist/<%= pkg.name %>.zip'
             }
+        }, 
+        copy: {
+            main: {
+                files: [
+                    {
+                        expand: true,
+                        src: 'node_modules/imask/dist/*',
+                        dest: '../assets/js/',
+                        flatten: true
+                    }
+                ]
+            }
         }
 
 
@@ -137,7 +150,8 @@ module.exports = function (grunt) {
     grunt.registerTask('default', [
         'jshint',
         'sass',
-        'uglify'
+        'uglify',
+        'copy'
     ]);
 
     // Optimize Images Task

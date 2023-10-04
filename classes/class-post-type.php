@@ -72,18 +72,18 @@ class AESP_Post_Type
         $default = array(
             'name'               => sprintf(__('%ss', 'aesp'), $this->name),
             'singular_name'      => sprintf(__('%s', 'aesp'), $this->name),
-            'view_item'          => sprintf(__('View %s', 'aesp'), $this->name),
-            'edit_item'          => sprintf(__('Edit %s', 'aesp'), $this->name),
-            'search_items'       => sprintf(__('Search %s', 'aesp'), $this->name),
-            'update_item'        => sprintf(__('Update %s', 'aesp'), $this->name),
-            'parent_item_colon'  => sprintf(__('Parent %s:', 'aesp'), $this->name),
+            'view_item'          => sprintf(__('Ver %s', 'aesp'), $this->name),
+            'edit_item'          => sprintf(__('Editar %s', 'aesp'), $this->name),
+            'search_items'       => sprintf(__('Pesquisar %s', 'aesp'), $this->name),
+            'update_item'        => sprintf(__('Atualizar %s', 'aesp'), $this->name),
+            'parent_item_colon'  => sprintf(__('Pai %s:', 'aesp'), $this->name),
             'menu_name'          => sprintf(__('%ss', 'aesp'), $this->name),
-            'add_new'            => __('Add New', 'aesp'),
-            'add_new_item'       => sprintf(__('Add New %s', 'aesp'), $this->name),
-            'new_item'           => sprintf(__('New %s', 'aesp'), $this->name),
-            'all_items'          => sprintf(__('All %ss', 'aesp'), $this->name),
-            'not_found'          => sprintf(__('No %s found', 'aesp'), $this->name),
-            'not_found_in_trash' => sprintf(__('No %s found in Trash', 'aesp'), $this->name)
+            'add_new'            => __('Adicionar novo', 'aesp'),
+            'add_new_item'       => sprintf(__('Adicionar novo %s', 'aesp'), $this->name),
+            'new_item'           => sprintf(__('Novo %s', 'aesp'), $this->name),
+            'all_items'          => sprintf(__('Todos %ss', 'aesp'), $this->name),
+            'not_found'          => sprintf(__('Nenhum %s encontrado', 'aesp'), $this->name),
+            'not_found_in_trash' => sprintf(__('Nenhum %s encontrado na lixeira', 'aesp'), $this->name)
         );
 
         return array_merge($default, $this->labels);
