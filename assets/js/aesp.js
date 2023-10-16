@@ -91,6 +91,22 @@ function ajax_curriculo_form() {
 
     formCurriculo.addEventListener('submit', e => {
         e.preventDefault();
+
+        const formLoadWrapper = formCurriculo.querySelector('.form-load-wrapper');
+        formLoadWrapper.style.display = 'block';
+        // console.log('formLoadWrapper', formLoadWrapper);
+
+        const successDiv = document.getElementById('success-message');
+        if (typeof successDiv !== undefined && successDiv) {
+            successDiv.remove();
+        }
+
+        const errorMessages = formCurriculo.querySelectorAll('.error-message');
+        errorMessages.forEach(msg => msg.remove());
+
+        const errorInputs = formCurriculo.querySelectorAll('.error');
+        errorInputs.forEach(input => input.classList.remove('error'));
+
         submitBtn.disabled = true;
         const nome = document.getElementById('nome');
         const sobrenome = document.getElementById('sobrenome');
@@ -115,7 +131,7 @@ function ajax_curriculo_form() {
         const formData = new FormData(formCurriculo);
 
         formData.append('action', 'aesp_post_curriculo_form');
-        console.log('formData', formData);
+        // console.log('formData', formData);
 
         // for (const [key, value] of formData) {
         //     console.log('formData', `${key}: ${value}`);
@@ -126,12 +142,35 @@ function ajax_curriculo_form() {
         xhr.onreadystatechange = function (res) {
             if (this.readyState === 4 && this.status === 200) {
                 const res = JSON.parse(xhr.responseText);
-                console.log(res);
+                if (res.error_messages) {
+                    const ul = document.createElement('ul');
+                    ul.classList.add('error-messages');
+                    for (const key in res.error_messages) {
+                        const input = document.getElementById(key);
+                        if (typeof input !== undefined && input) {
+                            input.classList.add('error');
+                        }
+                        const li = document.createElement('li');
+                        li.classList.add('error-message');
+                        li.innerHTML = `<i class="fas fa-times"></i> ${res.error_messages[key]}`;
+                        ul.append(li);
+                    }
+                    formCurriculo.append(ul);
+                } else if (res.success) {
+                    const successMsg = document.createElement('div');
+                    successMsg.id = 'success-message';
+                    successMsg.classList.add('success-message');
+                    successMsg.innerHTML = `<i class="fas fa-check"></i> Formulário enviado com sucesso!`;
+                    formCurriculo.append(successMsg);
+                }
+                // console.log(res);
             }
             if (this.readyState === 4 && this.status === 404) {
                 console.log('An error occurred');
             }
             submitBtn.disabled = false;
+            formLoadWrapper.style.display = 'none';
+
         };
         xhr.send(formData);
 

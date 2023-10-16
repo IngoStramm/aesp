@@ -129,67 +129,67 @@ function aesp_post_curriculo_form()
     $error_messages = [];
 
     if (!isset($_POST['aesp_nonce_curriculo_form']) || !wp_verify_nonce($_POST['aesp_nonce_curriculo_form'], 'aesp_validate_curriculo_form_action')) {
-        $error_messages['message'] = __('Não possível verificar o formulário.', 'aesp');
+        $error_messages['message'] = __('Não possível validar o formulário.', 'aesp');
         $retorno['error_messages'] = $error_messages;
         wp_send_json($retorno);
         wp_die();
     }
 
     $nome = isset($_POST['nome']) && $_POST['nome'] ? $_POST['nome'] : null;
-    if (!$nome) $error_messages['nome'] = __('Campo nome é obrigatório', 'aesp');
+    if (!$nome) $error_messages['nome'] = __('Campo nome é obrigatório.', 'aesp');
 
     $sobrenome = isset($_POST['sobrenome']) && $_POST['sobrenome'] ? $_POST['sobrenome'] : null;
-    if (!$sobrenome) $error_messages['sobrenome'] = __('Campo sobrenome é obrigatório', 'aesp');
+    if (!$sobrenome) $error_messages['sobrenome'] = __('Campo sobrenome é obrigatório.', 'aesp');
 
     $email = isset($_POST['email']) && $_POST['email'] ? $_POST['email'] : null;
-    if (!$email) $error_messages['email'] = __('Campo email é obrigatório', 'aesp');
+    if (!$email) $error_messages['email'] = __('Campo email é obrigatório.', 'aesp');
 
     $cep = isset($_POST['cep']) && $_POST['cep'] ? $_POST['cep'] : null;
-    if (!$cep) $error_messages['cep'] = __('Campo cep é obrigatório', 'aesp');
+    if (!$cep) $error_messages['cep'] = __('Campo cep é obrigatório.', 'aesp');
 
     $rua = isset($_POST['rua']) && $_POST['rua'] ? $_POST['rua'] : null;
-    if (!$rua) $error_messages['rua'] = __('Campo rua é obrigatório', 'aesp');
+    if (!$rua) $error_messages['rua'] = __('Campo rua é obrigatório.', 'aesp');
 
     $numero = isset($_POST['numero']) && $_POST['numero'] ? $_POST['numero'] : null;
-    if (!$numero) $error_messages['numero'] = __('Campo numero é obrigatório', 'aesp');
+    if (!$numero) $error_messages['numero'] = __('Campo numero é obrigatório.', 'aesp');
 
     $bairro = isset($_POST['bairro']) && $_POST['bairro'] ? $_POST['bairro'] : null;
-    if (!$bairro) $error_messages['bairro'] = __('Campo bairro é obrigatório', 'aesp');
+    if (!$bairro) $error_messages['bairro'] = __('Campo bairro é obrigatório.', 'aesp');
 
     $complemento = isset($_POST['complemento']) && $_POST['complemento'] ? $_POST['complemento'] : null;
 
     $cidade = isset($_POST['cidade']) && $_POST['cidade'] ? $_POST['cidade'] : null;
-    if (!$cidade) $error_messages['cidade'] = __('Campo cidade é obrigatório', 'aesp');
+    if (!$cidade) $error_messages['cidade'] = __('Campo cidade é obrigatório.', 'aesp');
 
     $uf = isset($_POST['uf']) && $_POST['uf'] ? $_POST['uf'] : null;
-    if (!$uf) $error_messages['uf'] = __('Campo uf é obrigatório', 'aesp');
+    if (!$uf) $error_messages['uf'] = __('Campo uf é obrigatório.', 'aesp');
 
     $cpf = isset($_POST['cpf']) && $_POST['cpf'] ? $_POST['cpf'] : null;
-    if (!$cpf) $error_messages['cpf'] = __('Campo cpf é obrigatório', 'aesp');
+    if (!$cpf) $error_messages['cpf'] = __('Campo cpf é obrigatório.', 'aesp');
 
     $fone = isset($_POST['fone']) && $_POST['fone'] ? $_POST['fone'] : null;
-    if (!$fone) $error_messages['fone'] = __('Campo fone é obrigatório', 'aesp');
+    if (!$fone) $error_messages['fone'] = __('Campo fone é obrigatório.', 'aesp');
 
     $rede_social = isset($_POST['rede-social']) && $_POST['rede-social'] ? $_POST['rede-social'] : null;
-    if (!$rede_social) $error_messages['rede_social'] = __('Campo rede_social é obrigatório', 'aesp');
+    if (!$rede_social) $error_messages['rede_social'] = __('Campo rede_social é obrigatório.', 'aesp');
 
     $cargo = isset($_POST['cargo']) && $_POST['cargo'] ? $_POST['cargo'] : null;
-    if (!$cargo) $error_messages['cargo'] = __('Campo cargo é obrigatório', 'aesp');
+    if (!$cargo) $error_messages['cargo'] = __('Campo cargo é obrigatório.', 'aesp');
 
     $formacao = isset($_POST['formacao']) && $_POST['formacao'] ? $_POST['formacao'] : null;
-    if (!$formacao) $error_messages['formacao'] = __('Campo formacao é obrigatório', 'aesp');
+    if (!$formacao) $error_messages['formacao'] = __('Campo formacao é obrigatório.', 'aesp');
 
     $outros_cursos = isset($_POST['outros-cursos']) && $_POST['outros-cursos'] ? $_POST['outros-cursos'] : null;
-    if (!$outros_cursos) $error_messages['outros_cursos'] = __('Campo outros_cursos é obrigatório', 'aesp');
+    if (!$outros_cursos) $error_messages['outros_cursos'] = __('Campo outros_cursos é obrigatório.', 'aesp');
 
     $experiencia = isset($_POST['experiencia']) && $_POST['experiencia'] ? $_POST['experiencia'] : null;
-    if (!$experiencia) $error_messages['experiencia'] = __('Campo experiencia é obrigatório', 'aesp');
+    if (!$experiencia) $error_messages['experiencia'] = __('Campo experiencia é obrigatório.', 'aesp');
 
     $salario = isset($_POST['salario']) && $_POST['salario'] ? $_POST['salario'] : null;
-    if (!$salario) $error_messages['salario'] = __('Campo salario é obrigatório', 'aesp');
+    if (!$salario) $error_messages['salario'] = __('Campo salario é obrigatório.', 'aesp');
 
     $info = isset($_POST['info']) && $_POST['info'] ? $_POST['info'] : null;
-    if (!$info) $error_messages['info'] = __('Campo info é obrigatório', 'aesp');
+    if (!$info) $error_messages['info'] = __('Campo info é obrigatório.', 'aesp');
 
     $user_info = wp_get_current_user();
     if (!$user_info->exists()) $error_messages['user'] = __('É preciso estar logado para enviar o currículo.', 'aesp');
@@ -287,11 +287,10 @@ function aesp_post_curriculo_form()
         $retorno['warning_messages'] = $warning_messages;
     } else {
         $retorno['success'] = true;
-        $retorno['success_messages'] = __('Deu certo!', 'aesp');
+        $retorno['success_messages'] = __('Todos os campos foram atualizados.', 'aesp');
     }
 
     $retorno['curriculo_id'] = $curriculo_id;
-    $retorno['update_numero'] = $update_numero;
 
     wp_send_json($retorno);
     wp_die();
@@ -299,6 +298,41 @@ function aesp_post_curriculo_form()
 
 add_action('wp_ajax_aesp_post_curriculo_form', 'aesp_post_curriculo_form');
 add_action('wp_ajax_nopriv_aesp_post_curriculo_form', 'aesp_post_curriculo_form');
+
+function aesp_return_ufs()
+{
+    $ufs = [
+        '' => __('Selecione um Estado!', 'aesp'),
+        'AC' => 'Acre',
+        'AL' => 'Alagoas',
+        'AP' => 'Amapá',
+        'AM' => 'Amazonas',
+        'BA' => 'Bahia',
+        'CE' => 'Ceará',
+        'DF' => 'Distrito Federal',
+        'ES' => 'Espírito Santo',
+        'GO' => 'Goiás',
+        'MA' => 'Maranhão',
+        'MT' => 'Mato Grosso',
+        'MS' => 'Mato Grosso do Sul',
+        'MG' => 'Minas Gerais',
+        'PA' => 'Pará',
+        'PB' => 'Paraíba',
+        'PR' => 'Paraná',
+        'PE' => 'Pernambuco',
+        'PI' => 'Piauí',
+        'RJ' => 'Rio de Janeiro',
+        'RN' => 'Rio Grande do Norte',
+        'RS' => 'Rio Grande do Sul',
+        'RO' => 'Rondônia',
+        'RR' => 'Roraima',
+        'SC' => 'Santa Catarina',
+        'SP' => 'São Paulo',
+        'SE' => 'Sergipe',
+        'TO' => 'Tocantins'
+    ];
+    return $ufs;
+}
 
 // add_action('wp_head', 'aesp_teste');
 function aesp_teste()
