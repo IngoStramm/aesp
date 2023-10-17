@@ -257,3 +257,20 @@ function aesp_form_curriculo()
 
     return $output;
 }
+
+add_shortcode('nome-completo', 'aesp_nome_completo');
+
+function aesp_nome_completo()
+{
+    $post_id = get_the_ID();
+    if (!$post_id)
+        return;
+
+    $nome = get_post_meta($post_id, 'aesp_curriculo_nome', true);
+    $sobrenome = get_post_meta($post_id, 'aesp_curriculo_sobrenome', true);
+
+    if (!$nome || !$sobrenome)
+        return;
+
+    return $nome . ' ' . $sobrenome;
+}
