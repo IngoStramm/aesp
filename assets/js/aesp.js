@@ -43,6 +43,9 @@ function callbackCep(conteudo) {
 }
 
 function consultaCep(cepInput) {
+    if (typeof cepInput === undefined || !cepInput) {
+        return;
+    }
     cepInput.addEventListener('blur', () => {
         let cep = cepInput.value;
         cep = cep.replace(/\D/g, '');
@@ -83,6 +86,11 @@ function initCep() {
 
 function ajax_curriculo_form() {
     const formCurriculo = document.getElementById('form-curriculo');
+
+    if (typeof formCurriculo === formCurriculo || !formCurriculo) {
+        return;
+    }
+    
     const submitBtn = formCurriculo.querySelector('button');
 
     if (submitBtn.disabled) {
