@@ -37,6 +37,36 @@ function aesp_register_options_metabox()
             return $pages_array;
         }
     ));
+
+    $cmb_options->add_field(array(
+        'name'    => __('Página do formulário de cadastro de currículos', 'aesp'),
+        'id'      => 'aesp_curriculos_register_form_page',
+        'type'    => 'select',
+        'show_option_none' => true,
+        'options_cb'   => function () {
+            $pages = get_pages();
+            $pages_array = [];
+            foreach ($pages as $page) {
+                $pages_array[$page->ID] = $page->post_title;
+            }
+            return $pages_array;
+        }
+    ));
+
+    $cmb_options->add_field(array(
+        'name'    => __('Página da listagem de currículos', 'aesp'),
+        'id'      => 'aesp_curriculos_listing_page',
+        'type'    => 'select',
+        'show_option_none' => true,
+        'options_cb'   => function () {
+            $pages = get_pages();
+            $pages_array = [];
+            foreach ($pages as $page) {
+                $pages_array[$page->ID] = $page->post_title;
+            }
+            return $pages_array;
+        }
+    ));
 }
 
 function aesp_get_option($key = '', $default = false)

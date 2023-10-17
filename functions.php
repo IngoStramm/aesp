@@ -18,12 +18,31 @@ function aesp_redirect_to_login_page()
     }
 }
 
-// Verifica se o usuário está logado quando estiver acesso a área restrita
+// Verifica se o usuário está logado quando estiver acessando a área restrita
 add_action('get_header', 'aesp_area_restrita_managment');
 
 function aesp_area_restrita_managment()
 {
     if (!is_post_type_archive('documento'))
+        return;
+
+    if (is_user_logged_in())
+        return;
+
+    aesp_redirect_to_login_page();
+}
+
+// Verifica se o usuário está logado quando estiver acesso a área restrita
+add_action('get_header', 'aesp_curriculos_management');
+
+function aesp_curriculos_management()
+{
+    global $post;
+    $curr_page_id = $post->ID;
+    $aesp_curriculos_register_form_page = (int)aesp_get_option('aesp_curriculos_register_form_page');
+    $aesp_curriculos_listing_page = (int)aesp_get_option('aesp_curriculos_listing_page');
+
+    if ($curr_page_id !== $aesp_curriculos_register_form_page && $curr_page_id !== $aesp_curriculos_listing_page && !is_singular('curriculo'))
         return;
 
     if (is_user_logged_in())
@@ -335,7 +354,13 @@ function aesp_return_ufs()
 }
 
 // add_action('wp_head', 'aesp_teste');
+
 function aesp_teste()
 {
-    aesp_debug(get_user_curriculo_id());
+    global $post;
+    $curr_page_id = $post->ID;
+    $aesp_curriculos_register_form_page = aesp_get_option('aesp_curriculos_register_form_page');
+    $aesp_curriculos_listing_page = aesp_get_option('aesp_curriculos_listing_page');
+    aesp_debug($curr_page_id);
+    aesp_debug($aesp_curriculos_listing_page);
 }

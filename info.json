@@ -1,6 +1,6 @@
 {
     "name": "AESP",
-    "version": "0.0.15",
+    "version": "0.0.16",
     "download_url": "https://github.com/IngoStramm/aesp/raw/master/dist/aesp.zip",
     "homepage": "https://agencialaf.com",
     "requires": "4.7",
