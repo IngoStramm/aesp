@@ -1,7 +1,7 @@
 {
     "name": "aesp",
     "description": "Descrição do AESP.",
-    "version": "0.0.14",
+    "version": "0.0.15",
     "title": "AESP",
     "homepage": "https://agencialaf.com",
     "main": "Gruntfile.js",

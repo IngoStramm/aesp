@@ -13,7 +13,7 @@ function aesp_frontend_scripts()
 
     wp_enqueue_script('imask-script', AESP_URL . 'assets/js/imask' . $min . '.js', array(), '1.0.0', true);
 
-    wp_register_script('aesp-script', AESP_URL . 'assets/js/aesp' . $min . '.js', array('jquery', 'imask-script'), '1.0.0', true);
+    wp_register_script('aesp-script', AESP_URL . 'assets/js/aesp' . $min . '.js', array('jquery', 'imask-script'), '1.0.1', true);
 
     wp_enqueue_script('aesp-script');
 
