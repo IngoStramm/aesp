@@ -1,5 +1,17 @@
 <?php
 
+function aesp_can_user_access_restrict_area()
+{
+    // Se for um Admin ou Editor, retorna verdadeiro
+    if (current_user_can('edit_others_pages')) {
+        return true;
+    } else { // retorna se o usuário pode acessar a área restrita
+        $user_id = get_current_user_id();
+        $aesp_associado = get_user_meta($user_id, 'aesp_associado', true);
+        return $aesp_associado === 'on';
+    }
+}
+
 function aesp_redirect_to_login_page()
 {
     $aesp_login_page = aesp_get_option('aesp_login_page');
@@ -8,12 +20,26 @@ function aesp_redirect_to_login_page()
         wp_safe_redirect(get_site_url());
         exit;
     } else {
-        // aesp_debug($aesp_login_page);
         $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? 'https://' : 'http://';
         $curr_url = urlencode($protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 
-        // return aesp_debug(esc_url($curr_url));
         wp_safe_redirect(esc_url(get_page_link($aesp_login_page) . '?redirect=' . $curr_url));
+        exit;
+    }
+}
+
+function aesp_redirect_to_denied_access_page()
+{
+    $aesp_denied_access = aesp_get_option('aesp_denied_access');
+
+    if (!$aesp_denied_access) {
+        wp_safe_redirect(get_site_url());
+        exit;
+    } else {
+        $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? 'https://' : 'http://';
+        $curr_url = urlencode($protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+
+        wp_safe_redirect(esc_url(get_page_link($aesp_denied_access)));
         exit;
     }
 }
@@ -26,10 +52,11 @@ function aesp_area_restrita_managment()
     if (!is_post_type_archive('documento'))
         return;
 
-    if (is_user_logged_in())
-        return;
-
-    aesp_redirect_to_login_page();
+    if (!is_user_logged_in()) {
+        aesp_redirect_to_login_page();
+    } elseif (!aesp_can_user_access_restrict_area()) {
+        aesp_redirect_to_denied_access_page();
+    }
 }
 
 // Verifica se o usuário está logado quando estiver acesso a área restrita
@@ -38,17 +65,21 @@ add_action('get_header', 'aesp_curriculos_management');
 function aesp_curriculos_management()
 {
     global $post;
+    if (!$post && !is_post_type_archive('curriculo'))
+        return;
+
     $curr_page_id = $post->ID;
     $aesp_curriculos_register_form_page = (int)aesp_get_option('aesp_curriculos_register_form_page');
     $aesp_curriculos_listing_page = (int)aesp_get_option('aesp_curriculos_listing_page');
 
-    if ($curr_page_id !== $aesp_curriculos_register_form_page && $curr_page_id !== $aesp_curriculos_listing_page && !is_singular('curriculo'))
+    if ($curr_page_id !== $aesp_curriculos_register_form_page && $curr_page_id !== $aesp_curriculos_listing_page && !is_singular('curriculo') && !is_post_type_archive('curriculo'))
         return;
 
-    if (is_user_logged_in())
-        return;
-
-    aesp_redirect_to_login_page();
+    if (!is_user_logged_in()) {
+        aesp_redirect_to_login_page();
+    } elseif (!aesp_can_user_access_restrict_area()) {
+        aesp_redirect_to_denied_access_page();
+    }
 }
 
 // Remove o admin bar para todos os usuários que não sejam administradores
@@ -358,9 +389,17 @@ function aesp_return_ufs()
 function aesp_teste()
 {
     global $post;
+    if (!$post)
+        return;
+
     $curr_page_id = $post->ID;
     $aesp_curriculos_register_form_page = aesp_get_option('aesp_curriculos_register_form_page');
     $aesp_curriculos_listing_page = aesp_get_option('aesp_curriculos_listing_page');
-    aesp_debug($curr_page_id);
-    aesp_debug($aesp_curriculos_listing_page);
+
+    $user_id = get_current_user_id();
+    $aesp_associado = get_user_meta($user_id, 'aesp_associado', true);
+
+    $user = wp_get_current_user();
+
+    aesp_debug(aesp_can_user_access_restrict_area());
 }
