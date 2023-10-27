@@ -114,7 +114,7 @@ function aesp_custom_admin_bar()
         <div class="aesp-custom-admin-bar-message">
             <?php echo sprintf(__('Bem vindo, %s', 'aesp'), '<strong>' . $current_user->data->display_name . '</strong>'); ?> (<a href="<?php echo wp_logout_url($redirect); ?>" target="_self" class=""><?php _e('sair', 'aesp'); ?></a>)!
             <?php if ($aesp_curriculos_register_form_page) { ?>
-                <a class="aesp-btn aesp-btn-reverse" href="<?php echo get_page_link($aesp_curriculos_register_form_page); ?>" target="_blank"><?php _e('Seu currículo', 'aesp'); ?></a>
+                <a class="aesp-btn aesp-btn-reverse" href="<?php echo get_page_link($aesp_curriculos_register_form_page); ?>"><?php _e('Seu currículo', 'aesp'); ?></a>
             <?php } ?>
             <?php if ($show_admin_url) { ?>
                 <a class="aesp-btn" href="<?php echo get_admin_url(); ?>" target="_blank"><?php _e('Acessar admin', 'aesp'); ?></a>
