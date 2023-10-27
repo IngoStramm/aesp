@@ -49,13 +49,13 @@ add_action('get_header', 'aesp_area_restrita_managment');
 
 function aesp_area_restrita_managment()
 {
-    if (!is_post_type_archive('documento'))
-        return;
+    if (is_post_type_archive('documento')) {
 
-    if (!is_user_logged_in()) {
-        aesp_redirect_to_login_page();
-    } elseif (!aesp_can_user_access_restrict_area()) {
-        aesp_redirect_to_denied_access_page();
+        if (!is_user_logged_in()) {
+            aesp_redirect_to_login_page();
+        } elseif (!aesp_can_user_access_restrict_area()) {
+            aesp_redirect_to_denied_access_page();
+        }
     }
 }
 
@@ -72,12 +72,13 @@ function aesp_curriculos_management()
     $aesp_curriculos_register_form_page = (int)aesp_get_option('aesp_curriculos_register_form_page');
     $aesp_curriculos_listing_page = (int)aesp_get_option('aesp_curriculos_listing_page');
 
-    if ($curr_page_id !== $aesp_curriculos_register_form_page && $curr_page_id !== $aesp_curriculos_listing_page && !is_singular('curriculo') && !is_post_type_archive('curriculo'))
+    if ($curr_page_id !== $aesp_curriculos_listing_page && !is_singular('curriculo') && !is_post_type_archive('curriculo'))
         return;
 
     if (!is_user_logged_in()) {
         aesp_redirect_to_login_page();
     } elseif (!aesp_can_user_access_restrict_area()) {
+        // aesp_debug('acesso negado');
         aesp_redirect_to_denied_access_page();
     }
 }
