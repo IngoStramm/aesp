@@ -2,13 +2,17 @@
     display: block;
     width: 100%;
     margin: auto;
-    padding: 10px 0px;
+    padding: 0px;
     text-align: center;
     font-family: inherit;
     font-size: 0.8rem;
-    .aesp-btn {
-        margin-left: 40px;
-    }
+}
+
+.aesp-custom-admin-bar-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
 }
 
 .aesp-btn {
@@ -27,6 +31,18 @@
     &:focus:hover {
         background: #58bd19;
         color: #0a1451;
+    }
+    &.aesp-btn-reverse {
+        background: #58bd19;
+        color: #0a1451;
+        margin-left: 40px;
+        &:active,
+        &:focus,
+        &:hover,
+        &:focus:hover {
+            background: #0a1451;
+            color: #58bd19;
+        }
     }
 }
 
